@@ -20,6 +20,8 @@ import {vehiculo_model} from './../models/vehiculo';
 
 const Sequelize = require('sequelize');
 
+// para que funcione la conexion primero deben de crear la base de datos en SQLServer el sequalize creara las tablas
+
 export const sequelize = new Sequelize('PlaceDBNode','sa','Pa$$word2019',{
     dialect: 'mssql',
     host: 'localhost',
@@ -45,7 +47,7 @@ export const Marca = marca_model(sequelize,Sequelize);
 export const Producto = producto_model(sequelize,Sequelize);
 export const Provincia = provincia_model(sequelize,Sequelize);
 export const Servicio = servicio_model(sequelize,Sequelize);
-export const tarifa = tarifa_model(sequelize,Sequelize);
+export const Tarifa = tarifa_model(sequelize,Sequelize);
 export const TipoCliente = tipocliente_model(sequelize,Sequelize);
 export const TipoDocumento = tipodocumento_model(sequelize,Sequelize);
 export const TipoEstacionamiento = tipoestacionamiento_model(sequelize,Sequelize);
@@ -54,7 +56,39 @@ export const Vehiculo = vehiculo_model(sequelize,Sequelize);
 
 //En el modelo PlayaServicio va a crear un campo de nombre 'playa_id'
 //este campo será la clave foranea que una PlayaServicio con Playa
-// Cliente.belongsTo(TipoCliente, {foreignKey:'TipoClienteId'});
+Cliente.belongsTo(TipoCliente, {foreignKey:'TipoClienteId'});
+
+Distrito.belongsTo(Provincia, {foreignKey:'ProvinciaId'});
+
+DocumentoVentaDetalle.belongsTo(DocumentoVenta, {foreignKey:'DocumentoVentaId'});
+DocumentoVentaDetalle.belongsTo(Servicio, {foreignKey:'ServicioId'});
+DocumentoVentaDetalle.belongsTo(Producto, {foreignKey:'ProductoId'});
+DocumentoVentaDetalle.belongsTo(Ingreso, {foreignKey:'IngresoId'});
+
+
+DocumentoVenta.belongsTo(Cliente, {foreignKey:'ClienteId'});
+DocumentoVenta.belongsTo(TipoDocumento, {foreignKey:'TipoDocumentoId'});
+DocumentoVenta.belongsTo(Estacionamiento, {foreignKey:'EstacionamientoId'});
+
+
+Espacio.belongsTo(Estacionamiento, {foreignKey:'EstacionamientoId'});
+
+Estacionamiento.belongsTo(Distrito, {foreignKey:'DistritoId'});
+Estacionamiento.belongsTo(TipoEstacionamiento, {foreignKey:'TipoEstacionamientoId'});
+
+
+Ingreso.belongsTo(Espacio, {foreignKey:'EspacioId'});
+Ingreso.belongsTo(Vehiculo, {foreignKey:'VehiculoId'});
+
+Producto.belongsTo(Marca, {foreignKey:'MarcaId'});
+
+Provincia.belongsTo(Departamento, {foreignKey:'DepartamentoId'});
+
+Tarifa.belongsTo(Estacionamiento, {foreignKey:'EstacionamientoId'});
+Tarifa.belongsTo(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
+
+Vehiculo.belongsTo(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
+
 // PlayaServicio.belongsTo(Servicio, {foreignKey:'serv_id'});
 
 
