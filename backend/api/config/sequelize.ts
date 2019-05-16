@@ -56,9 +56,9 @@ export const Vehiculo = vehiculo_model(sequelize,Sequelize);
 
 //En el modelo PlayaServicio va a crear un campo de nombre 'playa_id'
 //este campo será la clave foranea que una PlayaServicio con Playa
-Cliente.belongsTo(TipoCliente, {foreignKey:'TipoClienteId'});
+Cliente.hasMany(TipoCliente, {foreignKey:'TipoClienteId'});
 
-Distrito.belongsTo(Provincia, {foreignKey:'ProvinciaId'});
+Distrito.hasMany(Provincia, {foreignKey:'ProvinciaId'});
 
 DocumentoVentaDetalle.belongsTo(DocumentoVenta, {foreignKey:'DocumentoVentaId'});
 DocumentoVentaDetalle.belongsTo(Servicio, {foreignKey:'ServicioId'});
@@ -89,11 +89,7 @@ Tarifa.belongsTo(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
 
 Vehiculo.belongsTo(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
 
-// PlayaServicio.belongsTo(Servicio, {foreignKey:'serv_id'});
 
-
-// SlotPlaya.belongsTo(Playa,{foreignKey:'playa_id'});
-// Playa.hasMany(SlotPlaya,{foreignKey:'playa_id'});
 
 
 

@@ -1,5 +1,8 @@
+import {cliente_controller} from './../controllers/cliente';
 import { Router } from 'express';
-import { cliente_controller } from '../controllers/cliente';
+
 
 
 export var cliente_router = Router();
+
+cliente_router.get('/cliente',cliente_controller.getAllClientes);

@@ -28,10 +28,10 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const PUERTO = process.env.PORT || 3000;
+const PUERTO = process.env.PORT || 3700;
 // CONFIGURANDO EL CORS
 app.use((req:Request,res:Response,next:NextFunction)=>{
-    res.header('Access-Control-Allow-Origin','http://localhost:4200');
+    res.header('Access-Control-Allow-Origin','http://localhost:3700');
     res.header('Access-Control-Allow-Headers','Content-Type, Authorization');
     res.header('Access-Control-Allow-Methods','GET, POST');
     res.header('Allow','GET, POST');
@@ -69,7 +69,7 @@ app.listen(PUERTO, function () {
     // la función sync, la crea en la base de datos.
 
     
-    sequelize.sync({ force: true }).then(() => {
+    sequelize.sync({ force: false }).then(() => {
         console.log("Base de datos creada con éxito");
     }).catch((error:any) => {
         console.log(error);
