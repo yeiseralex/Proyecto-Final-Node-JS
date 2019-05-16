@@ -8,7 +8,7 @@ const Op = Sequelize.Op;
 
 export var tipocliente_controller = {
     
-    getAll: (req: Request, res: Response) => {
+    getAllTipoClientes: (req: Request, res: Response) => {
         TipoCliente.findAll().then((tipoclientes: any) => {
             // CODIGO DE PRUEBA
             let response = {
