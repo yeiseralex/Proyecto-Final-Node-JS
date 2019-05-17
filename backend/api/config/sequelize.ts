@@ -56,38 +56,38 @@ export const Vehiculo = vehiculo_model(sequelize,Sequelize);
 
 //En el modelo PlayaServicio va a crear un campo de nombre 'playa_id'
 //este campo será la clave foranea que una PlayaServicio con Playa
-Cliente.hasMany(TipoCliente, {foreignKey:'TipoClienteId'});
+TipoCliente.hasMany(Cliente, {foreignKey:'TipoClienteId'});
 
 Distrito.hasMany(Provincia, {foreignKey:'ProvinciaId'});
 
-DocumentoVentaDetalle.belongsTo(DocumentoVenta, {foreignKey:'DocumentoVentaId'});
-DocumentoVentaDetalle.belongsTo(Servicio, {foreignKey:'ServicioId'});
-DocumentoVentaDetalle.belongsTo(Producto, {foreignKey:'ProductoId'});
-DocumentoVentaDetalle.belongsTo(Ingreso, {foreignKey:'IngresoId'});
+DocumentoVentaDetalle.hasMany(DocumentoVenta, {foreignKey:'DocumentoVentaId'});
+DocumentoVentaDetalle.hasMany(Servicio, {foreignKey:'ServicioId'});
+DocumentoVentaDetalle.hasMany(Producto, {foreignKey:'ProductoId'});
+DocumentoVentaDetalle.hasMany(Ingreso, {foreignKey:'IngresoId'});
 
 
-DocumentoVenta.belongsTo(Cliente, {foreignKey:'ClienteId'});
-DocumentoVenta.belongsTo(TipoDocumento, {foreignKey:'TipoDocumentoId'});
-DocumentoVenta.belongsTo(Estacionamiento, {foreignKey:'EstacionamientoId'});
+DocumentoVenta.hasMany(Cliente, {foreignKey:'ClienteId'});
+DocumentoVenta.hasMany(TipoDocumento, {foreignKey:'TipoDocumentoId'});
+DocumentoVenta.hasMany(Estacionamiento, {foreignKey:'EstacionamientoId'});
 
 
-Espacio.belongsTo(Estacionamiento, {foreignKey:'EstacionamientoId'});
+Espacio.hasMany(Estacionamiento, {foreignKey:'EstacionamientoId'});
 
-Estacionamiento.belongsTo(Distrito, {foreignKey:'DistritoId'});
-Estacionamiento.belongsTo(TipoEstacionamiento, {foreignKey:'TipoEstacionamientoId'});
+Estacionamiento.hasMany(Distrito, {foreignKey:'DistritoId'});
+Estacionamiento.hasMany(TipoEstacionamiento, {foreignKey:'TipoEstacionamientoId'});
 
 
-Ingreso.belongsTo(Espacio, {foreignKey:'EspacioId'});
-Ingreso.belongsTo(Vehiculo, {foreignKey:'VehiculoId'});
+Ingreso.hasMany(Espacio, {foreignKey:'EspacioId'});
+Ingreso.hasMany(Vehiculo, {foreignKey:'VehiculoId'});
 
-Producto.belongsTo(Marca, {foreignKey:'MarcaId'});
+Producto.hasMany(Marca, {foreignKey:'MarcaId'});
 
-Provincia.belongsTo(Departamento, {foreignKey:'DepartamentoId'});
+Provincia.hasMany(Departamento, {foreignKey:'DepartamentoId'});
 
-Tarifa.belongsTo(Estacionamiento, {foreignKey:'EstacionamientoId'});
-Tarifa.belongsTo(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
+Tarifa.hasMany(Estacionamiento, {foreignKey:'EstacionamientoId'});
+Tarifa.hasMany(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
 
-Vehiculo.belongsTo(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
+Vehiculo.hasMany(TipoVehiculo, {foreignKey:'TipoVehiculoId'});
 
 
 

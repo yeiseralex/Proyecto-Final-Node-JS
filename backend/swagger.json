@@ -1,0 +1,15 @@
+{
+    "swagger": "2.0",
+    "info": {
+    "version": "1.0.0",
+    "title": "Proyecto Final Codigo GO",
+    "description": "Especificacion de las Apis desarrolladas en el backend de node js con sequelize",
+    "licence": {
+        "name": "MIT",
+        "url": "https://opensource.com/licence/MIT"
+
+        
+    }
+
+}
+}

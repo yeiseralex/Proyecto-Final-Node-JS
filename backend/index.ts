@@ -20,6 +20,9 @@ import { vehiculo_router } from './api/routes/vehiculo';
 import { sequelize } from './api/config/sequelize';
 import { NextFunction, Request, Response } from 'express';
 
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json'
+
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -37,6 +40,8 @@ app.use((req:Request,res:Response,next:NextFunction)=>{
     res.header('Allow','GET, POST');
     next();
 });
+
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api', cliente_router);
 app.use('/api', departamento_router);
